@@ -1,0 +1,14 @@
+syntax = "proto3"; 
+package service_two; 
+option go_package = "./;proto";
+
+message Response {
+    uint32 code = 1;
+    string text = 2;
+}
+
+message NoArguments {}
+
+service Service {
+    rpc GetSomeResponse(NoArguments) returns (Response) {};
+}

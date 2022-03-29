@@ -1,0 +1,46 @@
+[global]
+	checkNewVersion = false
+	sendAnonymousUsage = false
+
+[entryPoints]
+  [entryPoints.traefik]
+	address = ":8091"
+  [entryPoints.grpc]
+    address = ":37000"
+
+[api]
+	insecure = true
+	dashboard = true
+
+[providers]
+	[providers.file]
+		debugLogGeneratedTemplate = true
+        # Point current file itself
+		filename = "./grpc_proxy_example.toml"
+		watch = true
+
+[http]
+    # Routers section
+    [http.routers]
+        [http.routers.grpc-service_one-router]
+            entryPoints = ["grpc"]
+            service = "grpc-service_one-service"
+            # Prepare prefix to match protobuff package name and service name
+            rule = "PathPrefix(`/service_one.Service`)"
+        [http.routers.grpc-service_two-router]
+            entryPoints = ["grpc"]
+            service = "grpc-service_two-service"
+            # Prepare prefix to match protobuff package name and service name
+            rule = "PathPrefix(`/service_two.Service`)"
+    # Services section
+    [http.services]
+        # Prepare balancer for first service
+		[http.services.grpc-service_one-service.loadBalancer]
+			[[http.services.grpc-service_one-service.loadBalancer.servers]]
+                # Make sure port matches to content of main.go of first service
+				url = "h2c://localhost:35001"
+        # Prepare balancer for second service
+		[http.services.grpc-service_two-service.loadBalancer]
+			[[http.services.grpc-service_two-service.loadBalancer.servers]]
+                # Make sure port matches to content of main.go of second service
+				url = "h2c://localhost:35002"
