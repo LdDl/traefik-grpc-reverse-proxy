@@ -12,7 +12,10 @@
 * Installed Traefik - https://doc.traefik.io/traefik/getting-started/install-traefik/
   
   In my case I've used binary distribution for linux_amd64.tar.gz with [v2.6.2 tag](https://github.com/traefik/traefik/releases/tag/v2.6.2). Your mileage may vary.
+  
+  Why no Nginx? There is no objective reason... I've just tried to do it with Traefik and it worked
 
+  
 * Prepared configuration file.
 
   I prefer to have *.toml format. I'll describe some if its contents later.
