@@ -72,7 +72,7 @@
   ```
 
   Main challenge to prepare reverse proxy is to prepare correct rules for forwaring.
-  ```toml
+  ```bash
   ...
   rule = "PathPrefix(`/service_one.Service`)"
   # Where 'service_one' is package name of first service protobuf and 'Service' is service name
