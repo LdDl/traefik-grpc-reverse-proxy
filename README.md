@@ -3,7 +3,7 @@
 ### Backstory
   Some time ago I had a task to do reverse proxy for multiple gRPC services.
 
-  I've already known how to do common HTTP/HTTPS/WS/WSS stuff with bith [Traefik](https://traefik.io/) and [Ngnix](https://nginx.org), but I had not have familiar with HTTP2 (which is gRPC based on) reverse proxy.
+  I've already known how to do common HTTP/HTTPS/WS/WSS stuff with both [Traefik](https://traefik.io/) and [Ngnix](https://nginx.org), but I had not have familiar with HTTP2 (which is gRPC based on) reverse proxy.
   I've start digging into and now I provide some workaround below.
 
 
