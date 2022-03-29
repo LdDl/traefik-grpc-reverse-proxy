@@ -5,7 +5,7 @@
 
   I've already known how to do common HTTP/HTTPS/WS/WSS stuff with bith [Traefik](https://traefik.io/) and [Ngnix](https://nginx.org), but I had not have familiar with HTTP2 (which is gRPC based on) reverse proxy.
   I've start digging into and now I provide some workaround below.
-  
+
 
 ### Requirements:
 
@@ -15,7 +15,7 @@
 
 * Prepared configuration file.
 
-  I prefer to have *.toml format. I'll describe its contents later.
+  I prefer to have *.toml format. I'll describe some if its contents later.
 
 * Clone this repo and navigate to main directory
   ```shell
@@ -67,6 +67,18 @@
   ```shell
   ./traefik --configFile=./grpc_proxy_example.toml
   ```
+
+  Main challenge to prepare reverse proxy is to prepare correct rules for forwaring.
+  ```toml
+  ...
+  rule = "PathPrefix(`/service_one.Service`)"
+  # Where 'service_one' is package name of first service protobuf and 'Service' is service name
+  ...
+  rule = "PathPrefix(`/service_two.Service`)"
+  # Where 'service_two' is package name of second service protobuf and 'Service' is service name
+  ...
+  ```
+  Don't forget that load balancer URL has to start with "h2c://" since it's HTTP2
 
 * Start test client
   
