@@ -18,7 +18,7 @@
   
 * Prepared configuration file.
 
-  I prefer to have *.toml format. I'll describe some if its contents later.
+  I prefer to have *.toml format. I'll describe some of its contents later.
 
 * Clone this repo and navigate to main directory
   ```shell
